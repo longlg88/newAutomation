@@ -1,9 +1,9 @@
 ---
 
 - name: Copy setting shell
-  copy: src=setting_test.sh dest=/{{ user }}/ owner={{ user }} mode=0755
+  copy: src=setting.sh dest=/{{ user }}/ owner={{ user }} mode=0755
   when: ansible_distribution == "Ubuntu"
 
 - name: Execute setting shell
-  shell: /{{ user }}/setting_test.sh 
+  shell: /{{ user }}/setting.sh 
   when: ansible_distribution == "Ubuntu"
