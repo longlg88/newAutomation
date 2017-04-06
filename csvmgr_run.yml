@@ -5,14 +5,13 @@
   remote_user: '{{ user }}'
   environment:
     TB_HOME: '{{ tb_home }}'
-    CSVMGR_SID: '{{ csvmgr_sid }}'
-    CSVMGR_IPADDR: '{{ csvmgr_ipaddr }}'
-    CSVMGR_PORT: '{{ csvmgr_port }}'
-    CSVMGR_META_DB_NAME: '{{ csvmgr_meta_db_name }}'
-    CSVMGR_META_DB_USER: '{{ csvmgr_meta_db_user }}'
-    CSVMGR_META_DB_PWD: '{{ csvmgr_meta_db_pwd }}'
-    CSVMGR_LOG_DIR: '{{ csvmgr_log_dir }}'
-    CSVMGR_LOG_LEVEL: '{{ csvmgr_log_level }}'
+    CSVMGR_SID: '{{ CSVMGR_SID }}'
+    CSVMGR_IPADDR: '{{ CSVMGR_IPADDR }}'
+    CSVMGR_PORT: '{{ CSVMGR_PORT }}'
+    CSVMGR_META_DB_NAME: '{{ CSVMGR_META_DB_NAME }}'
+    CSVMGR_META_DB_USER: '{{ CSVMGR_META_DB_USER }}'
+    CSVMGR_META_DB_PWD: '{{ CSVMGR_META_DB_PWD }}'
+    CSVMGR_LOG_LEVEL: '{{ CSVMGR_LOG_LEVEL }}'
   vars_files:
     - "vars/external_vars.yml"
 

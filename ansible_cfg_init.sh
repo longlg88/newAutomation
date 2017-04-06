@@ -37,6 +37,9 @@ sudo mkdir $ANSIBLE_HOME/roles/csvmgr_run/files/binary
 
 sudo mv $ANSIBLE_HOME/auto_binary/db_install_fix06/* $ANSIBLE_HOME/roles/db_install_fix06/files/binary/
 
+sudo cp $ANSIBLE_HOME/auto_binary/dbmanual_install/tibero6-bin-FS06-linux64-140418-opt-tested.tar.gz $ANSIBLE_HOME/roles/csvmgr_run/files/binary
+
+sudo mv $ANSIBLE_HOME/auto_binary/csvmgr_run/* $ANSIBLE_HOME/roles/csvmgr_run/files/binary
 
 sudo mv $ANSIBLE_HOME/auto_binary/dbmanual_install/* $ANSIBLE_HOME/roles/dbmanual_install/files/binary
 
@@ -50,7 +53,6 @@ sudo mv $ANSIBLE_HOME/roles/dbmanual_install/files/binary/license.xml $ANSIBLE_H
 
 sudo mv $ANSIBLE_HOME/auto_binary/po7_ver7_install/* $ANSIBLE_HOME/roles/po7_ver7_install/files/binary
 
-sudo mv $ANSIBLE_HOME/auto_binary/csvmgr_run/* $ANSIBLE_HOME/roles/csvmgr_run/files/binary
 
 sudo mv $ANSIBLE_HOME/auto_binary/ping_internal/* $ANSIBLE_HOME/roles/ping_internal/files
 
