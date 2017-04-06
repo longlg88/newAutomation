@@ -1,0 +1,17 @@
+---
+- name: Main main recursive directory(ALL)
+  file: path=/{{ user }}/automation/{{ item }} state=directory
+  with_items:
+    - ping
+
+- name: Copy iphost file
+  copy: src=iphost dest=/{{ user }}/automation/ping owner={{ user }} mode=0644
+
+- name: Copy ping internal test shell script
+  copy: src=ping_internal_test.sh dest=/{{ user }}/automation/ping owner={{ user }} mode=0755
+
+- name: Execute ping external test shell script
+  shell: /{{ user }}/automation/ping/ping_internal_test.sh
+
+- name: Delete iphost file
+  file: path=/{{ user }}/automation/ping/iphost state=absent

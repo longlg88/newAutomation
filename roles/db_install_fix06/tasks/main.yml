@@ -1,0 +1,42 @@
+---
+
+- name: Make recursive directory(DB)
+  file: path=/{{ user }}/automation/{{ item }} state=directory
+  with_items:
+    - db_files
+
+# setting docker install shell & update & install docker 
+- name: Copy docker install shell centos
+  copy: src=docker_install_centos.sh dest=/{{ user }}/automation/initial/docker_install.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "CentOS"
+
+- name: Copy docker install shell on ubuntu
+  copy: src=docker_install_ubuntu.sh dest=/{{ user }}/automation/initial/docker_install.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Execute docker install shell
+  shell: /{{ user }}/automation/initial/docker_install.sh 2>&1 | tee /{{ user }}/automation/log/progress
+
+- name: Copy tibero image
+  copy: src=binary/tibero6_fix06.tar dest=/{{ user }}/automation/db_files/tibero6_fix06.tar owner={{ user }} mode=644
+
+- name: Copy tibero datafiles
+  copy: src=binary/tibero_df_fix06.tar dest=/{{ user }}/automation/db_files/tibero_df_fix06.tar owner={{ user }} mode=644
+
+- name: Unzip tibero datafiles
+  unarchive:
+    src: /{{ user }}/automation/db_files/tibero_df_fix06.tar
+    dest: /{{ user }}/automation/db_files
+    remote_src: True
+
+- name: Setting tibero6 run shell in centos
+  copy: src=tibero_run_centos.sh dest=/{{ user }}/automation/tibero_run.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "CentOS"
+
+- name: Seeting tibero6 run shell in ubuntu
+  copy: src=tibero_run_ubuntu.sh dest=/{{ user }}/automation/tibero_run.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Run Tibero
+  shell: /{{ user }}/automation/tibero_run.sh 2>&1 >> /root/automation/log/progress
+

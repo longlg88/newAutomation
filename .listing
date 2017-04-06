@@ -1,0 +1,14 @@
+drwx------    7 1003     1003         4096 Apr 03 04:16 .
+drwxr-xr-x    6 0        0              78 Mar 31 10:50 ..
+-rw-r--r--    1 1003     1003           18 Dec 06 23:19 .bash_logout
+-rw-r--r--    1 1003     1003          193 Dec 06 23:19 .bash_profile
+-rw-r--r--    1 1003     1003          231 Dec 06 23:19 .bashrc
+drwxrwxr-x    3 1003     1003           25 Mar 31 11:17 .cache
+drwxrwxr-x    3 1003     1003           25 Mar 31 11:17 .config
+-rw-------    1 1003     1003          677 Apr 03 04:13 .viminfo
+drwxr-xr-x    7 0        0            4096 Apr 02 12:57 ansible_binary_ex
+drwxr-xr-x    6 0        0            4096 Apr 03 03:30 auto_binary
+-rw-r--r--    1 0        0        5127833600 Apr 02 13:07 auto_binary.tar.gz
+-rw-------    1 0        0        1642137088 Mar 31 11:17 po7_b007_v235d.tar
+-rw-r--r--    1 0        0        1612825088 Mar 31 11:17 po7b007demo.tar
+-rwxr-xr-x    1 0        0             109 Apr 03 04:16 xxx.sh

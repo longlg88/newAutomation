@@ -1,0 +1,9 @@
+---
+
+- name: Delete Compute node
+  url:
+    url: {{ cnode_delete }}
+    method: DELETE
+    body: "{{ lookup('file', 'cnode_delete.json') }}"
+    body_format: json
+    HEADER_Content-Type: "application/json"

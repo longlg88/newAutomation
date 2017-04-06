@@ -1,0 +1,10 @@
+---
+
+- name: Delete storage node
+  url:
+    url: {{ snode_delete }}
+    method: DELETE
+    body: "{{ lookup('file', 'snode_delete.json') }}"
+    body_format: json
+    HEADER_Content-Type: "application/json"
+

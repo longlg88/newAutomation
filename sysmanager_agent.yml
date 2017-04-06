@@ -1,0 +1,10 @@
+---
+
+- name: Setting sysmanager agent
+  hosts: '{{ hosts }}'
+  remote_user: '{{ user }}'
+  vars_files:
+    - "vars/external_vars.yml"
+
+  roles:
+    - sysmanager_agent

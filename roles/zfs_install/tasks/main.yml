@@ -1,0 +1,19 @@
+---
+- name: Make recursive directory
+  file: path=/{{ user }}/automation/{{ item }} state=directory
+  with_items:
+    - storage
+
+- name: Install zfs packages
+  apt:
+    name: zfsutils-linux
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Copy zfs shell
+  copy: src=zpool_set.sh dest=/{{ user }}/automation/storage/zpool_set.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Execute zfs shell
+  shell: /{{ user }}/automation/storage/zpool_set.sh 
+  when: ansible_distribution == "Ubuntu"

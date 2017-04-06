@@ -1,0 +1,9 @@
+---
+- name: Add storage host
+  hosts: '{{ hosts }}'
+  remote_user: '{{ user }}'
+  vars_files:
+    - "vars/external_vars.yml"
+
+  roles:
+    - snode_create

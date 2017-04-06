@@ -1,0 +1,17 @@
+- name: Make recursive directory
+  file: path=/{{ user }}/{{ item }} state=directory
+  with_items:
+    - sysmanager
+
+- name: Copy sysmanager agent env
+  copy: src=gen_sysmanager_setenv.sh dest=/{{ user }}/automation/compute/gen_sysmanager_setenv.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Copy sysmanager agent
+  copy: src=agent.sh dest=/{{ user }}/sysmanager owner={{ user }} mode=0755
+
+- name: Setting sysmanager setenv
+  shell: "/{{ user }}/automation/compute/gen_sysmanager_setenv.sh"
+
+- name: Execute sysmanager agent
+  shell: "/{{ user }}/sysmanager/agent.sh"

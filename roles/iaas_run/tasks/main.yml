@@ -1,0 +1,30 @@
+---
+- name: Make directory master
+  file: path=/{{ user }}/automation/po7/proobject7/application/servicegroup/{{ item }} state=directory
+  with_items:
+    - master
+
+- name: Make directory dto
+  file: path=/{{ user }}/automation/po7/proobject7/application/servicegroup/master/{{ item }} state=directory
+  with_items:
+    - dto
+
+- name: Copy iaas master binary in master
+  copy: src=master.jar dest=/{{ user }}/automation/po7/proobject7/application/servicegroup/master/ owner={{ user }} mode=0755
+
+- name: Copy iaas master binary in dto
+  copy: src=master.jar dest=/{{ user }}/automation/po7/proobject7/application/servicegroup/master/dto/ owner={{ user }} mode=0755
+
+- name: Backup application.xml
+  command: mv /{{ user }}/automation/po7/proobject7/config/application.xml /{{ user }}/automation/po7/proobject7/config/application.xml.testbackup
+
+- name: Copy application.xml
+  copy: src=application.xml dest=/{{ user }}/automation/po7/proobject7/config/ owner={{ user }} mode=0755
+
+# setting po7 run shell
+- name: Setting po7 run shell
+  copy: src=po7_run.sh dest=/{{ user }}/automation/po7/po7_run.sh owner={{ user }    } mode=0755
+
+# run po7
+- name: Run po7
+  shell: /root/automation/po7/po7_run.sh

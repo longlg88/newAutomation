@@ -1,0 +1,8 @@
+---
+- name: Register storage node
+  url:
+    url: {{ snode_create }}
+    method: POST
+    body: "{{ lookup('file', 'snode_create.json') }}"
+    body_format: json
+    HEADER_Content-Type: "application/json"

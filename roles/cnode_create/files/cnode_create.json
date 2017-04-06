@@ -1,0 +1,28 @@
+{
+	"dto":{
+		"hostId":long
+		"hostUuid":string,
+		"hostName":string,
+		"hostIp":string,
+		"totalCpu":int,
+		"totalMemory":int,
+		"totalDisk":int,
+		"pooledDisk":int,
+		"hostType":string,
+		"hypervisorType":string,
+		"cpuArch":string,
+		"availabilityZone":string,
+		"status":string,
+		"hostPmac":string,
+		"externalPort":string,
+		"internalPort":string,
+		"switchDpid":int,
+		"switchPort":int,
+		"accessName":string,
+		"accessAuth":string,
+		"createdTime":date,
+		"updatedTime":date,
+		"active":boolean,
+		"hostAgentNum":int
+	}
+}
