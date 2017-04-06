@@ -27,6 +27,13 @@ echo $ANSIBLE_HOME
 sudo wget -m -np -nH  --ftp-user=autouser --ftp-password=tmaxcloud! ftp://192.168.2.194/auto_binary.tar.gz
 
 sudo tar -xvf $ANSIBLE_HOME/auto_binary.tar.gz
+sudo mkdir $ANSIBLE_HOME/roles/db_install_fix06/files/binary
+sudo mkdir $ANSIBLE_HOME/roles/dbmanual_install/files/binary
+
+sudo mkdir $ANSIBLE_HOME/roles/dbmanual_install/files/sql_script
+sudo mkdir $ANSIBLE_HOME/roles/dbmanual_install/files/license
+sudo mkdir $ANSIBLE_HOME/roles/po7_ver7_install/files/binary
+sudo mkdir $ANSIBLE_HOME/roles/csvmgr_run/files/binary
 
 sudo mv $ANSIBLE_HOME/auto_binary/db_install_fix06/* $ANSIBLE_HOME/roles/db_install_fix06/files/binary/
 
