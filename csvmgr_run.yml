@@ -11,6 +11,7 @@
     CSVMGR_META_DB_NAME: '{{ CSVMGR_META_DB_NAME }}'
     CSVMGR_META_DB_USER: '{{ CSVMGR_META_DB_USER }}'
     CSVMGR_META_DB_PWD: '{{ CSVMGR_META_DB_PWD }}'
+    CSVMGR_LOG_DIR: '{{ CSVMGR_LOG_DIR }}'
     CSVMGR_LOG_LEVEL: '{{ CSVMGR_LOG_LEVEL }}'
   vars_files:
     - "vars/external_vars.yml"

@@ -10,6 +10,7 @@ fi
 sql=/root/automation/db_files/sql_script/make_user.sql
 
 echo "create user $TID identified by '$TPW';" >> $sql
+echo "grant create sequence to $TID;" >> $sql
 echo "grant create session to $TID;" >> $sql
 echo "grant create table to $TID;" >> $sql
 

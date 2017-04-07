@@ -14,5 +14,6 @@
 - name: copy volume manager binary
   copy: src=binary/csvmgr dest=/{{ user }}/automation/csvmgr owner={{ user }} mode=0755
 
+
 - name: csvmgr booting
   shell: /{{ user }}/automation/csvmgr/csvmgr -b
