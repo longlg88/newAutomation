@@ -1,0 +1,10 @@
+---
+- name: Check tibero tar file is exist
+  stat: path={{ tb_binary_path }}
+  register: tibero_tar_exists
+
+- name: gtar tibero
+  unarchive: 
+    src={{ tb_binary_path }}
+    dest=/{{ user }}/
+  when: "tibero_tar_exists.stat.exists == False"
