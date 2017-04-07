@@ -23,7 +23,7 @@
 
 # setting po7 run shell
 - name: Setting po7 run shell
-  copy: src=po7_run.sh dest=/{{ user }}/automation/po7/po7_run.sh owner={{ user }    } mode=0755
+  copy: src=po7_run.sh dest=/{{ user }}/automation/po7/po7_run.sh owner={{ user }} mode=0755
 
 # run po7
 - name: Run po7
