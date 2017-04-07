@@ -10,10 +10,10 @@
     - dto
 
 - name: Copy iaas master binary in master
-  copy: src=master.jar dest=/{{ user }}/automation/po7/proobject7/application/servicegroup/master/ owner={{ user }} mode=0755
+  copy: src=binary/master.jar dest=/{{ user }}/automation/po7/proobject7/application/servicegroup/master/ owner={{ user }} mode=0755
 
 - name: Copy iaas master binary in dto
-  copy: src=master.jar dest=/{{ user }}/automation/po7/proobject7/application/servicegroup/master/dto/ owner={{ user }} mode=0755
+  copy: src=binary/master.jar dest=/{{ user }}/automation/po7/proobject7/application/servicegroup/master/dto/ owner={{ user }} mode=0755
 
 - name: Backup application.xml
   command: mv /{{ user }}/automation/po7/proobject7/config/application.xml /{{ user }}/automation/po7/proobject7/config/application.xml.testbackup

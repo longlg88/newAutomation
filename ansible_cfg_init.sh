@@ -57,7 +57,9 @@ sudo mv $ANSIBLE_HOME/roles/dbmanual_install/files/binary/csvmgr_schema.sql $ANS
 
 sudo mv $ANSIBLE_HOME/roles/dbmanual_install/files/binary/license.xml $ANSIBLE_HOME/roles/dbmanual_install/files/license
 
-sudo mv $ANSIBLE_HOME/auto_binary/po7_ver7_install/master.jar $ANSIBLE_HOME/roles/iaas_run/files/binary
+sudo mv $ANSIBLE_HOME/auto_binary/iaas_run/master.jar $ANSIBLE_HOME/roles/iaas_run/files/binary
+
+sudo mv $ANSIBLE_HOME/auto_binary/iaas_run/application.xml $ANSIBLE_HOME/roles/iaas_run/files
 
 sudo mv $ANSIBLE_HOME/auto_binary/po7_ver7_install/* $ANSIBLE_HOME/roles/po7_ver7_install/files/binary
 
