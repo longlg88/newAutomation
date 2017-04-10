@@ -6,7 +6,7 @@ echo $MAC
 if [[ "$MAC" =~ ^hwaddress* ]]; then
 	echo "There are MAC & IP address settings"
 else
-	inaddress=`ip addr | grep "inet " | grep brd | awk '{print $2}' | awk -F/ '{print $1}'`
+	inaddress=`ip addr | grep "eno2" | grep "inet " | grep brd | awk '{print $2}' | awk -F/ '{print $1}'`
 	i=`grep -n $inaddress iphost | cut -d: -f1 | awk NR==1`
 	address=`awk 'NR=="'"$i"'"{print $3}' iphost`
 	pmac=`awk 'NR=="'"$i"'"{print $4}' iphost`

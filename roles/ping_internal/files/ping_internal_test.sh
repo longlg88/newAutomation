@@ -2,7 +2,7 @@
 
 time=`date +%Y%m%d%H%M`
 
-this_ip=`ifconfig enp0s25 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}'`
+this_ip=`ifconfig eno1 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}'`
 
 file="log"
 success_file="logfile_internal_"$time"_"$this_ip"_SUCCESS"
