@@ -1,0 +1,49 @@
+---
+user: root
+
+## Tibero vars
+tid: impadmin
+tpw: cloudi1
+tport: 8629
+t_ip: 172.31.1.4
+tb_home: "/{{ user }}/tibero6"
+tb_sid: tibero
+tb_binary_path: "binary/tibero6-bin-FS06-linux64-140418-opt-tested.tar.gz"
+
+## PO7 vars
+domain_name: jeus_admin
+po_webadminport: 9736
+po_webport: 8080
+po_portal_port_1: 6776
+po_portal_port_2: 9008
+db_image_name: tibero6_fix06
+po_image_name: po7b007_demo
+poruntime: proobject-runtime-war-7.0.0.0.273
+
+## ansible vars
+#user_home: "{{ ansible_env.HOME }}"
+ansi_path: "{{ (ansible_env|default({})).PATH|default('') }}"
+ANSIBLE_HOST: root@172.31.1.1:/root/automation/git_170331
+
+## Volume Manager vars
+CSVMGR_SID: csvmgr
+CSVMGR_IPADDR: 172.31.1.3
+CSVMGR_PORT: 52000
+CSVMGR_META_DB_NAME: tibero
+CSVMGR_META_DB_USER: impadmin
+CSVMGR_META_DB_PWD: cloudi1
+CSVMGR_LOG_DIR: "$TB_HOME/instance/$CSVMGR_SID/log"
+CSVMGR_LOG_LEVEL: DEBUG
+
+
+## Storage ZFS vars
+volume1: /dev/sda4 
+volume2: /dev/sda5
+volume3: /dev/sda6
+zpool_name: zvolume
+
+## Host Create / Delete URL vars
+cnode_create: http://172.31.1.3:8080/imp/master/Hosts
+cnode_delete: http://192.168.53.231:8080/imp/master/Hosts/hostID
+snode_create: url
+snode_delete: url

@@ -1,22 +1,4 @@
 ---
-- name: Install lxc package
-  apt:
-    name: lxc
-    state: present
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install bridge-utils
-  apt:
-    name: bridge-utils
-    state: present
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install curl
-  apt:
-    name: curl
-    state: present
-  when: ansible_distribution == "Ubuntu"
-
 - name: Make compute directory
   file: path=/{{ user }}/automation/{{ item }} state=directory
   with_items:
@@ -34,6 +16,14 @@
   apt:
     name: sshpass
     state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Copy lxc install shell
+  copy: src=lxc.sh dest=/{{ user }}/automation/compute/lxc.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: install lxc
+  shell: "sh /{{ user }}/automation/compute/lxc.sh"
   when: ansible_distribution == "Ubuntu"
 
 - name: Copy setting shell

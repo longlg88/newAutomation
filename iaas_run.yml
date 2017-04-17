@@ -8,6 +8,7 @@
     TIBERO_PORT: '{{ tport }}'
     TIBERO_USER: '{{ tid }}'
     TIBERO_PW: '{{ tpw }}'
+    DOMAINNAME: '{{ domain_name }}'
     PO_WEBADMIN_PORT: '{{ po_webadminport }}'
     PO_WEB_PORT: '{{ po_webport }}'
     PO_PORTAL_PORT_1: '{{ po_portal_port_1 }}'

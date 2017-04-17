@@ -1,0 +1,13 @@
+---
+
+# setting docker install shell & update & install docker 
+- name: Copy docker install shell centos
+  copy: src=docker_install_centos.sh dest=/{{ user }}/automation/initial/docker_install.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "CentOS"
+
+- name: Copy docker install shell on ubuntu
+  copy: src=docker_install_ubuntu.sh dest=/{{ user }}/automation/initial/docker_install.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Execute docker install shell <update & install docker>
+  shell: /{{ user }}/automation/initial/docker_install.sh 2>&1 | tee /{{ user }}/automation/log/progress

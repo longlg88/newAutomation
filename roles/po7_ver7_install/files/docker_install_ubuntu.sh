@@ -15,7 +15,7 @@ apt-get -y install docker-engine
 
 touch /etc/docker/daemon.json
 
-echo '{ "insecure-registries":["192.168.2.198:5000"] }' >> /etc/docker/daemon.json
+echo '{ "insecure-registries":["'$insecure_ip'"] }' >> /etc/docker/daemon.json
  
 service docker stop
 

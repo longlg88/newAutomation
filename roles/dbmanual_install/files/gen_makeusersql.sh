@@ -13,4 +13,4 @@ echo "create user $TID identified by '$TPW';" >> $sql
 echo "grant create sequence to $TID;" >> $sql
 echo "grant create session to $TID;" >> $sql
 echo "grant create table to $TID;" >> $sql
-
+echo "exit;" >> $sql

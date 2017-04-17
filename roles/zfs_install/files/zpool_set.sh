@@ -20,5 +20,5 @@ done
 
 if [ $flag = "false" ]
 then
-	`zpool create $ZPOOL raidz $VOLUME1 $VOLUME2 $VOLUME3`
+	`zpool create -f $ZPOOL raidz $VOLUME1 $VOLUME2 $VOLUME3`
 fi

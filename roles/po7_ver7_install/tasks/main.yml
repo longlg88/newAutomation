@@ -42,16 +42,31 @@
   copy: src=binary/proobject7.tar.gz dest=/{{ user }}/automation/po7/proobject7.tar.gz owner={{ user }} mode=0644
 
 # unzip po7 tar file
-- name: Unzip po7 tar file
-  unarchive:
-    src: /{{ user }}/automation/po7/proobject7.tar.gz
-    dest: /{{ user }}/automation/po7
-    remote_src: True
+#- name: Unzip po7 tar file
+#  unarchive:
+#    src: /{{ user }}/automation/po7/proobject7.tar.gz
+#    dest: /{{ user }}/automation/po7
+
+# untar proobject7.tar.gz
+- name: copy untar proobject7 shell script
+  copy: src=untar_po7.sh dest=/{{ user }}/automation/po7 owner={{ user }} mode=0755
+  
+- name: untar proobject7.tar.gz
+  shell: /{{ user }}/automation/po7/untar_po7.sh 2>&1 >> /{{ user }}/automation/log/progress
+
+# copy po7 runtime binary
+#- name: copy po7 runtime binary
+#  copy: src=binary/proobject-runtime-war-7.0.0.0.273.war dest=/{{ user }}/automation/po7/proobject7/po7.war owner={{ user }} mode=0755
+
+- name: copy po7 runtime binary
+  copy: src=binary/{{ poruntime }}.war dest=/{{ user }}/automation/po7/proobject7/po7.war owner={{ user }} mode=0755
+  
+#- name: Setting po7 log directory
 
 # copy po7 log file
 - name: Copy po7 log file
-  copy: src=logs/ dest=/{{ user }}/automation/po7/proobject7/logs/ owner={{ user }} mode=0755
+  copy: src=logs/ dest=/{{ user }}/automation/po7/proobject7/ owner={{ user }} mode=0755 
 
 # setting po7 log directory
 - name: Setting po7 log directory
-  file: path=/{{ user }}/automation/po7/po7log state=touch owner={{ user }} mode=0755
+  file: path=/{{ user }}/automation/po7/po7log/ state=directory owner={{ user }} mode=0755

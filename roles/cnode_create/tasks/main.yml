@@ -1,9 +1,4 @@
 ---
 
 - name: Register Compute Node
-  url:
-	url: {{ cnode_create }}
-	method: POST
-	body: "{{ lookup('file', 'cnode_create.json') }}"
-	body_format: json
-	HEADER_Content-Type: "application/json"
+  shell: 'curl -X POST -d@cnode_create.json -H "Content-Type: application/json" {{ cnode_create }}'

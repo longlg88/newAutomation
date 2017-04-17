@@ -10,10 +10,27 @@
     state: present
   when: ansible_distribution == "Ubuntu"
 
+- name: Copy zfs setting shell
+  copy: src=zfs_setting.sh dest=/{{ user }}/automation/storage/ owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Execute zfs setting shell
+  shell: /{{ user }}/automation/storage/zfs_setting.sh
+  when: ansible_distribution == "Ubuntu"
+
+
 - name: Copy zfs shell
   copy: src=zpool_set.sh dest=/{{ user }}/automation/storage/zpool_set.sh owner={{ user }} mode=0755
   when: ansible_distribution == "Ubuntu"
 
 - name: Execute zfs shell
   shell: /{{ user }}/automation/storage/zpool_set.sh 
+  when: ansible_distribution == "Ubuntu"
+
+- name: Copy sysparams shell
+  copy: src=sysparams.sh dest=/{{ user }}/automation/storage/sysparams.sh owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Execute sysparams shell
+  shell: /{{ user }}/automation/storage/sysparams.sh
   when: ansible_distribution == "Ubuntu"

@@ -1,9 +1,19 @@
 ---
 
 - name: Copy setting shell
-  copy: src=setting_test.sh dest=/{{ user }}/ owner={{ user }} mode=0755
+  copy: src=setting.sh dest=/{{ user }}/ owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: Copy iphost
+  copy: src=iphost dest=/{{ user }}/ owner={{ user }} mode=0644
   when: ansible_distribution == "Ubuntu"
 
 - name: Execute setting shell
-  shell: /{{ user }}/setting_test.sh 
+  shell: /{{ user }}/setting.sh 
   when: ansible_distribution == "Ubuntu"
+
+- name: Reboot server
+  command: /sbin/reboot
+
+- name: Wiat for the server to finish rebooting
+  local_action: wait_for host=all search_regex=OpenSSH port=22 timeout=300

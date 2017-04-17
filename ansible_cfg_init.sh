@@ -23,12 +23,21 @@ done
 
 echo $ANSIBLE_HOME
 
-## ftp connect & download file
-sudo wget -m -np -nH  --ftp-user=autouser --ftp-password=tmaxcloud! ftp://192.168.2.194/auto_binary.tar.gz
+apt-get -y install expect
 
 if [ -e "$ANSIBLE_HOME/auto_binary.tar.gz" ]; then
-	echo "binary exists"
+	echo "ansible binary exists"
 else
+	## ftp connect & download file
+	echo "ansible binary not exists"
+	sudo wget -m -np -nH  --ftp-user=autouser --ftp-password=tmaxcloud! ftp://192.168.2.194/auto_binary.tar.gz
+fi
+
+if [ -e "$ANSIBLE_HOME/auto_binary" ]; then
+	echo "directory exists"
+else
+	## untar
+	echo "directory not exists"
 	sudo tar -xvf $ANSIBLE_HOME/auto_binary.tar.gz 
 	sudo mkdir $ANSIBLE_HOME/roles/db_install_fix06/files/binary
 	sudo mkdir $ANSIBLE_HOME/roles/dbmanual_install/files/binary
@@ -39,6 +48,10 @@ else
 	sudo mkdir $ANSIBLE_HOME/roles/po7_ver7_install/files/binary
 	sudo mkdir $ANSIBLE_HOME/roles/csvmgr_run/files/binary
 fi
+
+sudo mkdir $ANSIBLE_HOME/pingtest
+sudo mkdir $ANSIBLE_HOME/pingtest/external
+sudo mkdir $ANSIBLE_HOME/pingtest/internal
 
 ## File transfer to directory
 sudo mv $ANSIBLE_HOME/auto_binary/db_install_fix06/* $ANSIBLE_HOME/roles/db_install_fix06/files/binary/
@@ -52,6 +65,8 @@ sudo mv $ANSIBLE_HOME/auto_binary/dbmanual_install/* $ANSIBLE_HOME/roles/dbmanua
 sudo mv $ANSIBLE_HOME/roles/dbmanual_install/files/binary/create_database.sql $ANSIBLE_HOME/roles/dbmanual_install/files/sql_script
 
 sudo mv $ANSIBLE_HOME/roles/dbmanual_install/files/binary/create_table.sql $ANSIBLE_HOME/roles/dbmanual_install/files/sql_script
+
+sudo mv $ANSIBLE_HOME/roles/dbmanual_install/files/binary/insert_table.sql $ANSIBLE_HOME/roles/dbmanual_install/files/sql_script
 
 sudo mv $ANSIBLE_HOME/roles/dbmanual_install/files/binary/csvmgr_schema.sql $ANSIBLE_HOME/roles/dbmanual_install/files/sql_script
 

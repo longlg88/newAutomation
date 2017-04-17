@@ -1,0 +1,11 @@
+---
+- name: Install Docker for test
+  hosts: '{{ hosts }}'
+  remote_user: '{{ user }}'
+  environment:
+    insecure_ip: '{{ insecure_ip }}'
+
+  vars_files:
+    - "vars/external_vars.yml"
+  roles:
+    - docker_install

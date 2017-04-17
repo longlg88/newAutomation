@@ -11,9 +11,30 @@
 - name: execute env setting shell
   shell: /{{ user }}/automation/csvmgr/gen_csvmgr_setenv.sh
 
+- name: copy gen setenv
+  copy: src=gen_setenv.sh dest=/{{ user }}/automation/csvmgr owner={{ user }} mode=0755
+
+- name: execute setenv 
+  shell: /{{ user }}/automation/csvmgr/gen_setenv.sh
+
 - name: copy volume manager binary
   copy: src=binary/csvmgr dest=/{{ user }}/automation/csvmgr owner={{ user }} mode=0755
 
+- name: Make file tbdsn.tbr
+  file: path=/{{ user }}/tibero6/client/config/tbdsn.tbr state=touch mode=0755
 
-- name: csvmgr booting
-  shell: /{{ user }}/automation/csvmgr/csvmgr -b
+
+- name: Write file tbdsn.tbr
+  shell: echo "tibero = ((INSTANCE=(HOST=172.31.2.4)(PORT=8629)(DB_NAME=tibero)))" > /{{ user }}/tibero6/client/config/tbdsn.tbr
+
+- name: copy csvmgr booting
+  copy: src=boot.sh dest=/{{ user }}/ owner={{ user }} mode=0755
+  when: ansible_distribution == "Ubuntu"
+
+- name: echo CSVMGR_SID
+  shell: echo $CSVMGR_SID
+
+
+- name: execute csvmgr booting
+  command: /{{ user }}/boot.sh
+  when: ansible_distribution == "Ubuntu"

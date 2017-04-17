@@ -13,6 +13,7 @@
     PO_PORTAL_PORT_1: '{{ po_portal_port_1 }}'
     PO_PORTAL_PORT_2: '{{ po_portal_port_2 }}'
     PO_IMAGE_NAME: '{{ po_image_name }}'
+	insecure_ip: '{{ insecure_ip }}'
   vars_files:
     - "vars/external_vars.yml"
 

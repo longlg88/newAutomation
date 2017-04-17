@@ -60,7 +60,7 @@ done
 shift $(( $OPTIND -1 ))
 
 
-file="$(locate '*id_rsa')"
+file=`find /root/ -name "id_rsa"`
 echo $file
 
 if [ -f "$file" ]; then
@@ -79,8 +79,18 @@ while [ $index -le $host_count ]
 do
     host_ip=`cat $PWD/hosts | grep -v "\[" | grep -v "\#" | grep -v "^$" | sed -n "$index"'p'` 
     echo $host_ip
-    sudo sh -c "ssh-copy-id -i /home/jang/.ssh/id_rsa.pub root@'$host_ip' > temp"
 
+expect << EOF
+    spawn sudo sh -c "ssh-copy-id -i /root/.ssh/id_rsa.pub root@'$host_ip' > temp"
+        expect -re "(yes/no)" {
+            send "yes\r"
+            exp_continue
+        } -re "password:" {
+            send "tmax@23\r"
+        }
+    
+    expect eof
+EOF
 
     warning=`sed -n '/WARNING/p' temp`
     error=`sed -n '/ERROR/p' temp`
@@ -119,6 +129,8 @@ elif [ "$action" = "dbmanualinstall" ]; then
 	ansible-playbook dbmanual_install.yml -e "hosts=$host" -v
 elif [ "$action" = "dbmanualrun" ]; then
 	ansible-playbook dbmanual_run.yml -e "hosts=$host" -v
+elif [ "$action" = "dockerinstall" ]; then
+	ansible-playbook docker_install.yml -e "hosts=$host" -v
 elif [ "$action" = "dockerdelete" ]; then
 	ansible-playbook docker_delete.yml -e "hosts=$host" -v
 elif [ "$action" = "iaasrun" ]; then
@@ -145,6 +157,8 @@ elif [ "$action" = "zfsdelete" ]; then
 	ansible-playbook zfs_delete.yml -e "hosts=$host" -v
 elif [ "$action" = "zfsinstall" ]; then
 	ansible-playbook zfs_install.yml -e "hosts=$host" -v
+elif [ "$action" = "downloadtest" ]; then
+	ansible-playbook downloadtest.yml -e "hosts=$host" -v
 else
     echo "Unrecongnized host : "$host "command : "$action
 fi
